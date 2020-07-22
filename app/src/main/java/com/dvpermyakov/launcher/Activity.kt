@@ -21,12 +21,13 @@ class Activity : AppCompatActivity() {
 
     private fun getApplicationItems(): List<ApplicationItem> {
         return packageManager.getInstalledApplications(0)
-            .filter {appInfo ->
+            .filter { appInfo ->
                 packageManager.getLaunchIntentForPackage(appInfo.packageName) != null
             }
             .map { appInfo ->
                 ApplicationItem(
                     name = appInfo.loadLabel(packageManager).toString(),
+                    packageName = appInfo.packageName,
                     icon = appInfo.loadIcon(packageManager),
                     intent = packageManager.getLaunchIntentForPackage(appInfo.packageName)
                 )

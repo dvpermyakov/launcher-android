@@ -33,6 +33,7 @@ class ApplicationAdapter : RecyclerView.Adapter<ApplicationAdapter.ViewHolder>()
 
         fun bind(item: ApplicationItem) {
             containerView.nameView.text = item.name
+            containerView.packageView.text = item.packageName
             containerView.iconView.setImageDrawable(item.icon)
 
             containerView.containerView.setOnClickListener {
