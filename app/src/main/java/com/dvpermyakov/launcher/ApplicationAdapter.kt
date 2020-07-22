@@ -3,6 +3,7 @@ package com.dvpermyakov.launcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_application_item.view.*
@@ -32,6 +33,16 @@ class ApplicationAdapter : RecyclerView.Adapter<ApplicationAdapter.ViewHolder>()
 
         fun bind(item: ApplicationItem) {
             containerView.nameView.text = item.name
+            containerView.iconView.setImageDrawable(item.icon)
+
+            containerView.containerView.setOnClickListener {
+                if (item.intent != null) {
+                    containerView.context.startActivity(item.intent)
+                } else {
+                    Toast.makeText(containerView.context, "Not found intent", Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
         }
 
     }

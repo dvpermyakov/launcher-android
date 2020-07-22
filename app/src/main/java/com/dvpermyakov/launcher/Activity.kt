@@ -16,12 +16,21 @@ class Activity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
-        adapter.items = listOf(
-            ApplicationItem("1"),
-            ApplicationItem("2"),
-            ApplicationItem("3"),
-            ApplicationItem("4")
-        )
+        adapter.items = getApplicationItems()
+    }
+
+    private fun getApplicationItems(): List<ApplicationItem> {
+        return packageManager.getInstalledApplications(0)
+            .filter {appInfo ->
+                packageManager.getLaunchIntentForPackage(appInfo.packageName) != null
+            }
+            .map { appInfo ->
+                ApplicationItem(
+                    name = appInfo.loadLabel(packageManager).toString(),
+                    icon = appInfo.loadIcon(packageManager),
+                    intent = packageManager.getLaunchIntentForPackage(appInfo.packageName)
+                )
+            }
     }
 
 }
