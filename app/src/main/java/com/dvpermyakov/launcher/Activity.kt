@@ -32,6 +32,9 @@ class Activity : AppCompatActivity() {
                     intent = packageManager.getLaunchIntentForPackage(appInfo.packageName)
                 )
             }
+            .sortedBy { appItem ->
+                appItem.name
+            }
     }
 
 }
