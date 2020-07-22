@@ -1,2 +1,3 @@
-# launcher-android
-Simple launcher which shows installed apps and allows to launch them by tapping
+# Simple launcher
+
+<img src="misc/image/screen.png" width="336" align="left" hspace="20">
